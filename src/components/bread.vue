@@ -17,7 +17,8 @@ export default {
         {path: '/home', name: '首页'},
         {path: '/project', name: '项目'},
         {path: '/other', name: '其他'},
-        {path: '/file', name: '文档'}
+        {path: '/file', name: '文档'},
+        {path: '/upload', name: '上传'}
       ],
       actived: ''
     }
@@ -34,11 +35,10 @@ export default {
     height: 60px;
     line-height: 60px;
     color: #242837;
-    background: green;
+    background: white;
     .bread_main {
-      width: 610px;
+      width: 720px;
       height: 100%;
-      background: red;
       .logo {
         float: left;
         width: 100px;
@@ -47,10 +47,9 @@ export default {
       }
       .tab {
         float: left;
-        width: 360px;
+        width: 440px;
         height: 100%;
         margin-left: 100px; 
-        background: yellow;
         a {
           position: relative;
           display: inline-block;
@@ -63,8 +62,9 @@ export default {
           .tab_line {
             position: absolute;
             bottom: 0;
-            width: 100%;
+            width: 90%;
             height: 4px;
+            margin-left: 5%;
             background: #242837;
           }
         }

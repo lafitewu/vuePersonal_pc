@@ -24,6 +24,11 @@ export default new Router({
       path: '/file',
       name: 'file',
       component: resolve => require(['../pages/file.vue'], resolve)
+    },
+    {
+      path: '/upload',
+      name: 'upload',
+      component: resolve => require(['../pages/upload.vue'], resolve)
     }
   ]
 })
