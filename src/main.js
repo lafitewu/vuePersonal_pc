@@ -12,7 +12,7 @@ Vue.use(ElementUI)
 Vue.use(VueAxios,axios);
 Vue.config.productionTip = false;
 // 定义全局域名
-Vue.prototype.testName = "http://10.30.10.234:3000";
+Vue.prototype.testName = "http://localhost:3000";
 Vue.prototype.hostName = "http://129.204.180.14:3000";
 
 /* eslint-disable no-new */
