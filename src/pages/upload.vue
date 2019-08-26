@@ -31,20 +31,24 @@
             v-model="form.types"
             :options="options"
             @change="handleChange")
-        .project_child
-          el-input(v-model="form.project.title" placeholder="请输入标题")
-          el-input(class="pro_child_info" v-model="form.project.info" placeholder="请输入介绍")
+        .project_child(v-for="(item,index) in projectNum" :key="index+'project_demo'")
+          el-input(v-model="form.project[index].title" placeholder="请输入标题")
+          el-input(class="pro_child_info" v-model="form.project[index].info" placeholder="请输入介绍")
           .pic_list
             el-upload(
               class="avatar-uploader"
               action=""
-              :http-request="coverUploadFn"
-              ref="upload"
+              :http-request="uploadCardFn(index)"
+              :ref="uploadNameFn(index)"
+              :limit="8"
               list-type="picture-card"
               )
               i(class="el-icon-plus")
               //- img(v-if="coverPic" :src="coverPic" class="avatar")
               //- i(v-else class="el-icon-plus avatar-uploader-icon")
+        .add_project(@click="addModelFn")
+         | 点击添加模块
+        .save_btn(@click="pushFn") 发布
 </template>
 <script>
 import Bread from '../components/bread'
@@ -55,40 +59,53 @@ export default {
     return {
       coverPic: '',
       iconPic: '',
+      fileList: [],
+      fileList1: [],
+      fileList2: [],
+      fileList3: [],
+      fileList4: [],
+      fileList5: [],
+      fileList6: [],
       form: {
         active_name: '',
         project_info: '',
         types: '',
-        project: {
-          title: '',
-          info: ''
-        }
+        project: [
+          {title: '',info: ''},
+          {title: '',info: ''},
+          {title: '',info: ''},
+          {title: '',info: ''},
+          {title: '',info: ''},
+          {title: '',info: ''},
+          {title: '',info: ''}
+        ]
       },
       options: [{
         value: 'project',
         label: '项目',
         children: [
           {
-            value: 'app',
+            value: '0',
             label: 'APP'
           },
           {
-            value: 'web',
+            value: '1',
             label: 'Web'
           },
           {
-            value: 'wxmini',
+            value: '2',
             label: '小程序'
           },
           {
-            value: 'project_other',
+            value: '3',
             label: '其他'
           }
         ]
       },
       {value: 'other', label: '其他'},
       {value: 'file', label: '文档'}
-      ]
+      ],
+      projectNum: 1
     }
   },
   created() {
@@ -107,8 +124,66 @@ export default {
       }
       return isJPG && isLt2M;
     },
+    uploadCardFn(index) {
+      switch(index) {
+      case 0:
+        return this.coverUploadFn0
+        break;
+      case 1:
+        return this.coverUploadFn1
+        break;
+      case 2:
+        return this.coverUploadFn2
+        break;
+      case 3:
+        return this.coverUploadFn3
+        break;
+      case 4:
+        return this.coverUploadFn4
+        break;
+      case 5:
+        return this.coverUploadFn5
+        break;
+      case 6:
+        return this.coverUploadFn6
+        break;
+      default:
+        console.error("最多上传6个模块,如需添加，请联系管理员（开开）")
+    } 
+    },
+    uploadNameFn(index) {
+      return "upload" + index
+    },
     coverUploadFn() {
       this.uploadInit("coverPic","upload")
+    },
+    coverUploadFn0() {
+      this.uploadCardInit("fileList","upload0")
+      console.log(this.fileList)
+    },
+    coverUploadFn1() {
+      this.uploadCardInit("fileList1","upload1")
+      console.log(this.fileList1)
+    },
+    coverUploadFn2() {
+      this.uploadCardInit("fileList2","upload2")
+      console.log(this.fileList2)
+    },
+    coverUploadFn3() {
+      this.uploadCardInit("fileList3","upload3")
+      console.log(this.fileList3)
+    },
+    coverUploadFn4() {
+      this.uploadCardInit("fileList4","upload4")
+      console.log(this.fileList4)
+    },
+    coverUploadFn5() {
+      this.uploadCardInit("fileList5","upload5")
+      console.log(this.fileList5)
+    },
+    coverUploadFn6() {
+      this.uploadCardInit("fileList6","upload6")
+      console.log(this.fileList6)
     },
     iconPicFn() {
       this.uploadInit("iconPic","iconRef")
@@ -116,6 +191,7 @@ export default {
     // 上传函数封装
     uploadInit(dom,name) {
       const formData = new FormData()
+      console.log(this.$refs[name].uploadFiles)
       const Len = this.$refs[name].uploadFiles.length
       const file = this.$refs[name].uploadFiles[Len-1]
       const headerConfig = { headers: { 'Content-Type': 'multipart/form-data' }}
@@ -124,9 +200,57 @@ export default {
         this[dom] = this.testName + "/uploads/" + res.data.filename
       })
     },
+    uploadCardInit(dom,name) {
+      const formData = new FormData()
+      console.log(this.$refs[name][0].uploadFiles)
+      const Len = this.$refs[name][0].uploadFiles.length
+      const file = this.$refs[name][0].uploadFiles[Len-1]
+      const headerConfig = { headers: { 'Content-Type': 'multipart/form-data' }}
+      formData.append('file', file.raw)
+      this.axios.post(this.testName+'/uploader', formData).then(res => {
+        this[dom].push(this.testName + "/uploads/" + res.data.filename)
+      })
+    },
     // 下拉菜单
     handleChange(value) {
       console.log(value);
+    },
+    addModelFn() {
+      this.projectNum ++
+    },
+    // 发布
+    pushFn() {
+      console.log(this.form)
+      this.axios.get(this.testName + '/pc/upload',
+      {
+        params: {
+          id: new Date().getTime(),
+          type: this.form.types[0],
+          typeChild: this.form.types[1],
+          name: this.form.project_info,
+          info: this.form.active_name,
+          iconPic: this.iconPic,
+          coverPic: this.coverPic
+        }
+      }).then(res => {
+        var that = this;
+        this.$message({
+          message: '恭喜老板，发布成功！',
+          type: 'success'
+        });
+        this.$nextTick(function() {
+          that.form.project_info = "";
+          that.form.active_name = "";
+          that.iconPic = "";
+          that.coverPic = "";
+          that.form.types = [];
+        })
+      }).catch(err => {
+        this.$message({
+          message: '类型选择出错，请联系管理员（开开）',
+          type: 'error'
+        });
+      }) 
     }
   }
 }
@@ -285,6 +409,30 @@ export default {
       }
       }
     }
+    .add_project {
+      width: 1100px;
+      height: 148px;
+      line-height: 148px;
+      background: white;
+      margin: auto;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #242837;
+      text-indent: 45px;
+      cursor: pointer;
+    }
+    .save_btn {
+      width: 400px;
+      height: 60px;
+      background:rgba(92,193,103,1);
+      border-radius:6px;
+      margin: 30px auto;
+      text-align: center;
+      line-height: 60px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
   }
 </style>
 <style>
@@ -316,5 +464,8 @@ export default {
     border: none;
     margin-right: 65px;
     margin-top: 30px;
+  }
+  .el-upload--picture-card i {
+    line-height: 160px;
   }
 </style>
