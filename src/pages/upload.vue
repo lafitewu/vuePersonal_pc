@@ -59,7 +59,7 @@ export default {
     return {
       coverPic: '',
       iconPic: '',
-      fileList: [],
+      fileList0: [],
       fileList1: [],
       fileList2: [],
       fileList3: [],
@@ -158,32 +158,25 @@ export default {
       this.uploadInit("coverPic","upload")
     },
     coverUploadFn0() {
-      this.uploadCardInit("fileList","upload0")
-      console.log(this.fileList)
+      this.uploadCardInit("fileList0","upload0")
     },
     coverUploadFn1() {
       this.uploadCardInit("fileList1","upload1")
-      console.log(this.fileList1)
     },
     coverUploadFn2() {
       this.uploadCardInit("fileList2","upload2")
-      console.log(this.fileList2)
     },
     coverUploadFn3() {
       this.uploadCardInit("fileList3","upload3")
-      console.log(this.fileList3)
     },
     coverUploadFn4() {
       this.uploadCardInit("fileList4","upload4")
-      console.log(this.fileList4)
     },
     coverUploadFn5() {
       this.uploadCardInit("fileList5","upload5")
-      console.log(this.fileList5)
     },
     coverUploadFn6() {
       this.uploadCardInit("fileList6","upload6")
-      console.log(this.fileList6)
     },
     iconPicFn() {
       this.uploadInit("iconPic","iconRef")
@@ -221,6 +214,16 @@ export default {
     // 发布
     pushFn() {
       console.log(this.form)
+      var projectName = "",
+          projectInfo = "",
+          projectPic = "";
+      for(var i = 0; i < this.form.project.length; i++) {
+        if(this.form.project[i].title != "") {
+          projectName += this.form.project[i].title + "&&"
+          projectInfo += this.form.project[i].info + "&&"
+          projectPic += this["fileList"+i].join(',') + "&&"
+        }
+      }
       this.axios.get(this.testName + '/pc/upload',
       {
         params: {
@@ -230,21 +233,32 @@ export default {
           name: this.form.project_info,
           info: this.form.active_name,
           iconPic: this.iconPic,
-          coverPic: this.coverPic
+          coverPic: this.coverPic,
+          projectName: projectName,
+          projectInfo: projectInfo,
+          projectPic: projectPic
         }
       }).then(res => {
         var that = this;
-        this.$message({
-          message: '恭喜老板，发布成功！',
-          type: 'success'
-        });
-        this.$nextTick(function() {
-          that.form.project_info = "";
-          that.form.active_name = "";
-          that.iconPic = "";
-          that.coverPic = "";
-          that.form.types = [];
-        })
+        if(res.data.code == 200) {
+          this.$message({
+            message: '恭喜老板，发布成功！',
+            type: 'success'
+          });
+          this.$nextTick(function() {
+            that.form.project_info = "";
+            that.form.active_name = "";
+            that.iconPic = "";
+            that.coverPic = "";
+            // that.form.types = [];
+            that.form = {}
+          })
+        }else {
+          this.$message({
+            message: res.data.msg,
+            type: 'error'
+          });
+        }
       }).catch(err => {
         this.$message({
           message: '类型选择出错，请联系管理员（开开）',
