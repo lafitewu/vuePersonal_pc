@@ -189,8 +189,8 @@ export default {
       const file = this.$refs[name].uploadFiles[Len-1]
       const headerConfig = { headers: { 'Content-Type': 'multipart/form-data' }}
       formData.append('file', file.raw)
-      this.axios.post(this.testName+'/uploader', formData).then(res => {
-        this[dom] = this.testName + "/uploads/" + res.data.filename
+      this.axios.post(this.hostName+'/uploader', formData).then(res => {
+        this[dom] = this.hostName + "/uploads/" + res.data.filename
       })
     },
     uploadCardInit(dom,name) {
@@ -200,8 +200,8 @@ export default {
       const file = this.$refs[name][0].uploadFiles[Len-1]
       const headerConfig = { headers: { 'Content-Type': 'multipart/form-data' }}
       formData.append('file', file.raw)
-      this.axios.post(this.testName+'/uploader', formData).then(res => {
-        this[dom].push(this.testName + "/uploads/" + res.data.filename)
+      this.axios.post(this.hostName+'/uploader', formData).then(res => {
+        this[dom].push(this.hostName + "/uploads/" + res.data.filename)
       })
     },
     // 下拉菜单
@@ -224,7 +224,7 @@ export default {
           projectPic += this["fileList"+i].join(',') + "&&"
         }
       }
-      this.axios.get(this.testName + '/pc/upload',
+      this.axios.get(this.hostName + '/pc/upload',
       {
         params: {
           id: new Date().getTime(),
@@ -451,19 +451,19 @@ export default {
 </style>
 <style>
   .el-input__inner {
-    height: 100%;
-    outline: none;
-    border: none;
-    border-radius:8px;
-    background:rgba(243,244,246,1);
+    height: 100% !important;
+    outline: none !important;
+    border: none !important;
+    border-radius: 8px !important;
+    background:rgba(243,244,246,1) !important;
   }
   .el-upload--picture-card {
     /* float: left; */
-    width: 160px;
-    height: 160px;
-    border: none;
-    background: white;
-    margin-top: 30px;
+    width: 160px !important;
+    height: 160px !important;
+    border: none !important;
+    background: white !important;
+    margin-top: 30px !important;
   }
   /* .el-upload-list--picture-card {
     float: left;
@@ -473,13 +473,13 @@ export default {
     background: white;
   } */
   .el-upload-list--picture-card .el-upload-list__item {
-    width: 160px;
-    height: 160px;
-    border: none;
-    margin-right: 65px;
-    margin-top: 30px;
+    width: 160px !important;
+    height: 160px !important;
+    border: none !important;
+    margin-right: 65px !important;
+    margin-top: 30px !important;
   }
   .el-upload--picture-card i {
-    line-height: 160px;
+    line-height: 160px !important;
   }
 </style>
