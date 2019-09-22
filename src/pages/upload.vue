@@ -40,12 +40,10 @@
               action=""
               :http-request="uploadCardFn(index)"
               :ref="uploadNameFn(index)"
-              :limit="8"
               list-type="picture-card"
               )
               i(class="el-icon-plus")
-              //- img(v-if="coverPic" :src="coverPic" class="avatar")
-              //- i(v-else class="el-icon-plus avatar-uploader-icon")
+            .clear
         .add_project(@click="addModelFn")
          | 点击添加模块
         .save_btn(@click="pushFn") 发布
@@ -103,7 +101,7 @@ export default {
         ]
       },
       {value: 'other', label: '其他'},
-      {value: 'file', label: '文档'}
+      {value: 'file', label: '思考'}
       ],
       projectNum: 1
     }
@@ -230,8 +228,8 @@ export default {
           id: new Date().getTime(),
           type: this.form.types[0],
           typeChild: this.form.types[1],
-          name: this.form.project_info,
-          info: this.form.active_name,
+          name: this.form.active_name,
+          info: this.form.project_info,
           iconPic: this.iconPic,
           coverPic: this.coverPic,
           projectName: projectName,
@@ -360,9 +358,10 @@ export default {
     }
     .project_child {
       width: 1100px;
-      height: 650px;
+      // height: 650px;
       background: white;
       margin: 40px auto;
+      padding-bottom: 40px;
       border-radius: 8px;
       .el-input {
         position: relative;
@@ -380,23 +379,24 @@ export default {
         margin-top: 16px;
       }
       .pic_list {
-        // position: relative;
         width:1014px;
-        height:442px;
         background:rgba(243,244,246,1);
         border-radius:8px;
         margin-left: 42px;
         margin-top: 55px;
-       .avatar-uploader {
-        float: left;
-        position: relative;
-        top: 12px;
-        width: 90%;
-        height:442px;
-        border-radius: 8px;
-        margin-left: 9%;
-        // background: white;
-      }
+        padding-bottom: 40px;
+        .avatar-uploader {
+          float: left;
+          position: relative;
+          top: 12px;
+          width: 90%;
+          // height:442px;
+          border-radius: 8px;
+          margin-left: 9%;
+        }
+        .clear {
+          clear: both;
+        }
       .avatar-uploader .el-upload {
         border: 1px dashed #d9d9d9;
         border-radius: 6px;

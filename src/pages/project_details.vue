@@ -8,7 +8,7 @@
         .details_pic_l_title {{item.title}}
         .details_pic_l_info {{item.info}}
         .details_main_pic(v-for="items in list[index].picList" :key="items")
-          el-image(:src="items" fit="cover")
+          img(:src="items")
 </template>
 <script>
 import Bread from '../components/bread'
@@ -98,6 +98,7 @@ export default {
       .details_main_pic {
         width: 100%;
         img {
+          display: block;
           width: 100%;
           height: 100%;
         }

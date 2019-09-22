@@ -17,8 +17,8 @@ export default {
         {path: '/home', name: '首页'},
         {path: '/project', name: '项目'},
         {path: '/other', name: '其他'},
-        {path: '/file', name: '文档'},
-        {path: '/upload', name: '上传'}
+        {path: '/file', name: '思考'},
+        // {path: '/upload', name: '上传'}
       ],
       actived: ''
     }

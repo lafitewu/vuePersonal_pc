@@ -43,7 +43,8 @@
             .r_pic_content
               .r_pic_con_main
                 video(src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls="controls" poster="../../static/images/home_bg_img_show_1.png")
-          .r_pic_list(@click="goDetailFn(item)" v-for="item in projectArr" :key="item.id")
+          //- goDetailFn(item)
+          .r_pic_list(@click="goProjectrFn" v-for="item in projectArr" :key="item.id")
             .r_pic_head
               .r_pic_h_font
                 .r_h_title {{item.title}}
@@ -97,6 +98,9 @@ export default {
     },
     goOtherFn() {
       this.$router.push('/other')
+    },
+    goProjectrFn() {
+      this.$router.push('/project')
     },
     goFileFn() {
       this.$router.push('/file')
