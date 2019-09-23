@@ -149,6 +149,7 @@ export default {
             margin-top: 12px;
             font-size: 12px;
             width: 586px;
+            font-weight: 300;
             color:rgba(103,107,120,1);
           }
         }

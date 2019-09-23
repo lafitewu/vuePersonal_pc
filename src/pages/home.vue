@@ -43,8 +43,7 @@
             .r_pic_content
               .r_pic_con_main
                 video(src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls="controls" poster="../../static/images/home_bg_img_show_1.png")
-          //- goDetailFn(item)
-          .r_pic_list(@click="goProjectrFn" v-for="item in projectArr" :key="item.id")
+          .r_pic_list(@click="goDetailFn(item)" v-for="item in projectArr" :key="item.id")
             .r_pic_head
               .r_pic_h_font
                 .r_h_title {{item.title}}
@@ -133,7 +132,6 @@ export default {
           .h_left_name {
             height: 40px;
             font-size: 28px;
-            font-family: PingFang-SC;
             font-weight: 600;
             color: rgba(36,40,55,1);
             line-height: 40px;
@@ -143,9 +141,8 @@ export default {
           .h_left_info {
             height: 17px;
             font-size: 12px;
-            font-family: PingFang-SC;
             font-weight: 400;
-            color: rgba(36,40,55,1);
+            color: #717480;
             line-height: 17px;
             letter-spacing: 1px;
             margin-top: 17px;
@@ -161,6 +158,7 @@ export default {
           .left_cover {
             width: 100%;
             height: 180px;
+            border-radius: 10px 10px 0 0;
           }
           .h_pic_list_font {
             height: 50px;
