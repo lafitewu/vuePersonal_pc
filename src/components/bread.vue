@@ -14,7 +14,7 @@ export default {
   data () {
     return {
       tabArr: [
-        {path: '/home', name: '首页'},
+        {path: '/', name: '首页'},
         {path: '/project', name: '项目'},
         {path: '/other', name: '其他'},
         {path: '/file', name: '思考'},

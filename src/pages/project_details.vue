@@ -59,22 +59,24 @@ export default {
     position: relative;
     .details_header {
       width:1100px;
-      height: 123px;
+      height: 140px;
       border-radius: 6px;
       margin: auto;
-       margin-top: 24px;
-       background: white;
+      margin-top: 24px;
+      margin-bottom: 40px;
+      background: white;
        .details_head_title {
           margin-left: 48px;
           font-size: 28px;
           font-weight:600;
-          padding-top: 24px;
+          padding-top: 35px;
           color:rgba(36,40,55,1);
        }
        .details_head_info {
           font-size:12px;
           margin-left: 48px;
           margin-top: 6px;
+          font-weight: 300;
           color:rgba(163,165,174,1);
        }
     }
@@ -93,6 +95,7 @@ export default {
         font-size:12px;
         margin-top: 12px;
         margin-bottom: 20px;
+        font-weight: 300;
         color:rgba(163,165,174,1);
       }
       .details_main_pic {

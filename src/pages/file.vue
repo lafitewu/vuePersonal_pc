@@ -62,7 +62,7 @@ export default {
           text-align: center;
           .file_icon {
             width: 68px;
-            height: 58px;
+            height: 68px;
             margin-top: 40px;
           }
           .file_pic_title {

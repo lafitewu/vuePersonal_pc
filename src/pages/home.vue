@@ -4,15 +4,16 @@
       .home_main
         .home_left
           .h_left_title
-            img(:src="headPic")
+            //- img(:src="headPic")
+            img(src="../../static/images/userImg.jpg")
             .h_left_name {{userName}}
             .h_left_info {{info}}
           .h_pic_list(@click="goDetailFn(item)" v-for="item in otherArr" :key="item.id")
             img(class="left_cover" :src="item.coverPic")
             .h_pic_list_font
               .h_pic_font_title {{item.name}}
-              .h_pic_font_icon
-                img(:src="item.coverPic")
+              //- .h_pic_font_icon
+              //-   img(:src="item.coverPic")
           .h_l_info {{uiInfo}}
           .look_more(@click="goOtherFn")
             .look_font 查看更多
@@ -27,7 +28,7 @@
             .look_img
               img(src="../../static/images/look_more.png")
           .l_footer
-            .l_footer_font 更多设计
+            .l_footer_font 我的设计网站
             .l_footer_pic
               img(src="../../static/images/icon_common_icon_home_dribbble.png")
               img(src="../../static/images/icon_common_icon_home_behance.png")
@@ -39,10 +40,10 @@
                 .r_h_title 30秒简介
                 .r_h_info 这是一个短视频，视频全长30s，希望你可以通过这个视频了解我的日常生活
               .r_pic_icon
-                img(src="../../static/images/home_default_header_1.png")
+                img(src="../../static/images/home_default_header_1.jpg")
             .r_pic_content
               .r_pic_con_main
-                video(src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls="controls" poster="../../static/images/home_bg_img_show_1.png")
+                video(src="../../static/images/video.mp4" controls="controls" poster="../../static/images/home_bg_img_show_1.jpg")
           .r_pic_list(@click="goDetailFn(item)" v-for="item in projectArr" :key="item.id")
             .r_pic_head
               .r_pic_h_font
@@ -81,7 +82,7 @@ export default {
       this.userName = res.data.data.users[0].nickName
       this.info = res.data.data.users[0].motto
       this.footerFont = res.data.data.users[0].thanking
-      this.headPic = res.data.data.users[0].headPic
+      // this.headPic = res.data.data.users[0].headPic
       this.projectArr = res.data.data.project
       this.otherArr = res.data.data.other
       this.fileArr = res.data.data.file
@@ -156,6 +157,7 @@ export default {
           cursor: pointer;
           border-radius: 0 0 10px 10px;
           .left_cover {
+            display: block;
             width: 100%;
             height: 180px;
             border-radius: 10px 10px 0 0;
@@ -173,19 +175,19 @@ export default {
               font-weight:600;
               color:rgba(36,40,55,1);
             }
-            .h_pic_font_icon {
-              float: right;
-              width: 72px;
-              height: 90%;
-              border-left: 1px solid #EEEEEE;
-              img {
-                width: 34px;
-                height: 34px;
-                margin-left: 18px;
-                margin-top: 5px;
-                border-radius: 90px;
-              }
-            }
+            // .h_pic_font_icon {
+            //   float: right;
+            //   width: 72px;
+            //   height: 90%;
+            //   border-left: 1px solid #EEEEEE;
+            //   img {
+            //     width: 34px;
+            //     height: 34px;
+            //     margin-left: 18px;
+            //     margin-top: 5px;
+            //     border-radius: 90px;
+            //   }
+            // }
           }
         }
         .h_l_info {
@@ -193,9 +195,7 @@ export default {
           height:34px;
           font-size:12px;
           width: 300px;
-          font-family:PingFang-SC;
-          font-weight:400;
-          color:rgba(36,40,55,1);
+          color: #717480;
           line-height: 17px;
           margin-top: 20px;
         }
@@ -238,7 +238,6 @@ export default {
           .file_font {
             float: left;
             font-size:12px;
-            font-family:PingFang-SC;
             font-weight:400;
             line-height: 40px;
             color:rgba(36,40,55,1);
@@ -264,6 +263,7 @@ export default {
               width: 32px;
               height: 32px;
               margin-right: 30px;
+              opacity: .32;
             }
           }
         }
@@ -299,6 +299,8 @@ export default {
                 font-size:12px;
                 width: 100%;
                 margin-top: 12px;
+                overflow: hidden;
+                height: 32px;
                 color:rgba(36,40,55,1);
               }
             }
@@ -312,6 +314,7 @@ export default {
                 height: 60px;
                 margin-top: 17px;
                 margin-left: 42px;
+                border-radius: 90px;
               }
             }
           }
@@ -325,6 +328,7 @@ export default {
               video,img {
                 width: 100%;
                 height: 100%;
+                outline: none;
                 border-radius: 16px;
               }
             }

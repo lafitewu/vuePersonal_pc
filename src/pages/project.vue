@@ -75,9 +75,9 @@ export default {
   data () {
     return {
       appInfo: '这里的APP的项目比较多啦，小tips：可以比较详细看第一篇，其他的可以看看画面，这样就可以用最低的时间成本来了解我的项目经验了（包括国内项目和海外项目哦）',
-      webInfo: '这里的Web的项目比较多啦，小tips：可以比较详细看第一篇，其他的可以看看画面，这样就可以用最低的时间成本来了解我的项目经验了（包括国内项目和海外项目哦）',
-      miniInfo: '这里的小程序的项目比较多啦，小tips：可以比较详细看第一篇，其他的可以看看画面，这样就可以用最低的时间成本来了解我的项目经验了（包括国内项目和海外项目哦）',
-      otherInfo: '这里的其他的项目比较多啦，小tips：可以比较详细看第一篇，其他的可以看看画面，这样就可以用最低的时间成本来了解我的项目经验了（包括国内项目和海外项目哦）',
+      webInfo: 'Web端包括To B和To C业务，主要展示调研和视觉流程',
+      miniInfo: '小程序是与其他公司合作的，在风格上需要符合对方的要求，都是偏趣味性的设计，因此使用了部分动效来增加互动',
+      otherInfo: '平时需要协助小组成员处理一些视觉设计，包括活动界面，banner等',
       app_list: [],
       web_list: [],
       mini_list: [],
@@ -150,7 +150,7 @@ export default {
             font-size: 12px;
             width: 586px;
             font-weight: 300;
-            color:rgba(103,107,120,1);
+            color:#717480;
           }
         }
         .pro_list_pic {
@@ -182,6 +182,8 @@ export default {
               .pro_list_child_font {
                 font-size:12px;
                 margin-top: 8px;
+                overflow: hidden;
+                height: 32px;
                 color:rgba(36,40,55,1);
               }
             }
