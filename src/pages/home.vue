@@ -43,7 +43,7 @@
                 img(src="../../static/images/home_default_header_1.jpg")
             .r_pic_content
               .r_pic_con_main
-                video(src="../../static/images/video.mp4" controls="controls" poster="../../static/images/home_bg_img_show_1.jpg")
+                video(src="https://pic.midongtech.xyz/video.de99283.mp4" controls="controls" poster="../../static/images/home_bg_img_show_1.jpg")
           .r_pic_list(@click="goDetailFn(item)" v-for="item in projectArr" :key="item.id")
             .r_pic_head
               .r_pic_h_font
